@@ -8,8 +8,12 @@ import random
 
 
 def even_numbers():
-    number1 = int(input("Introduce el primer numero: "))
-    number2 = int(input("Introduce el segundo numero: "))
+    try:
+        number1 = int(input("Introduce el primer numero: "))
+        number2 = int(input("Introduce el segundo numero: "))
+    except ValueError:
+        print("El numero no es valido")
+        return
 
     difference = number2 - number1
     counter = 0
@@ -36,7 +40,11 @@ def counter_numbers():
     counter_greater_zero = 0
     counter_lesser_zero = 0
 
-    amount = int(input("Introduce el cantidad de números a introducir: "))
+    try:
+        amount = int(input("Introduce el cantidad de números a introducir: "))
+    except ValueError:
+        print("El numero no es valido")
+        return
 
     for i in range(amount):
         if i == 0:
@@ -60,7 +68,11 @@ def guess_the_number():
 
     for i in range(10):
         print(f"Intento {i+1}")
-        intent= int(input("Introduce un numero: "))
+        try:
+            intent = int(input("Introduce un numero: "))
+        except ValueError:
+            print("El numero no es valido")
+            return
         if intent == random_number:
             print("El numero es CORRECTO")
             winner = True
@@ -83,9 +95,12 @@ def limit_numbers():
     top_limit = 0
 
     while not correct_limit:
-        lower_limit = int(input("Introduce limite inferior: "))
-        top_limit = int(input("Introduce limite superior: "))
-
+        try:
+            lower_limit = int(input("Introduce limite inferior: "))
+            top_limit = int(input("Introduce limite superior: "))
+        except ValueError:
+            print("El limite no es valido")
+            return
         if lower_limit > top_limit:
             print("el limite inferior no puede ser mas grande que el superior")
         else:
@@ -96,7 +111,11 @@ def limit_numbers():
     right_at_limit = False
 
     while True:
-        number = int(input("Introduce un numero: "))
+        try:
+            number = int(input("Introduce un numero: "))
+        except ValueError:
+            print("El numero no es valido")
+            return
 
         if number == 0:
             break
@@ -142,7 +161,12 @@ def list_prime_numbers():
     counter = 0
     number = 2
 
-    n = int(input("Introduce cantidad de números: "))
+    try:
+        n = int(input("Introduce cantidad de números: "))
+    except ValueError:
+        print("El numero no es valido")
+        return
+
     if n<=0 :
         print("El numero no es valido, debe de ser mayor a 0")
         return
@@ -186,9 +210,13 @@ def generate_amortization_table(capital, annual_interest, term_years, fee):
 def calculate_mortgage():
     print("=== Calculadora de Hipoteca ===")
 
-    capital = float(input("Importe del préstamo (€): "))
-    annual_interest = float(input("Tasa de interés anual (%): "))
-    term_years = int(input("Plazo de pago (años): "))
+    try:
+        capital = float(input("Importe del préstamo (€): "))
+        annual_interest = float(input("Tasa de interés anual (%): "))
+        term_years = int(input("Plazo de pago (años): "))
+    except ValueError:
+        print("Debes de introducir un numero valido")
+        return
 
     fee = calculate_monthly_fee(capital, annual_interest, term_years)
 
@@ -210,7 +238,12 @@ def menu():
         print("7. Calculadora de hipoteca")
         print("0. Salir")
 
-        choice = input("Ingrese su elección: ")
+        try:
+            choice = input("Ingrese su elección: ")
+        except ValueError:
+            print("Debes de introducir un numero valido")
+            return
+
         print('\n')
 
         if choice == '1':
