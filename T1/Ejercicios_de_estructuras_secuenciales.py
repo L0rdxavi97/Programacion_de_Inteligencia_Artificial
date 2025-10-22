@@ -4,6 +4,7 @@
     Autor: Javier Acedo Caballero
     Fecha: 16/10/2025
 """
+MAX_SCORE = 10
 SCORE_BLANK = 0
 SCORE_WRONG = -1
 SCORE_RIGHT = 5
@@ -68,7 +69,7 @@ def calculate_mark():
         print("No puede haber valores negativos y debe de haber al menos una pregunta")
     else:
         total_score = right_questions * SCORE_RIGHT + wrong_questions * SCORE_WRONG + blank_questions * SCORE_BLANK
-        mark = float(total_score / float(total_questions * SCORE_RIGHT)) * 10
+        mark = float(total_score / float(total_questions * SCORE_RIGHT)) * MAX_SCORE
 
         print(f"\nPuntuación total: {total_score} de {total_questions * SCORE_RIGHT}")
         print(f"Nota final (normalizada de 0 a 10): {mark:.2f}")

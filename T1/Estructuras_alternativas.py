@@ -1,12 +1,19 @@
-# Programa: Estructuras_alternativas.py
-# Propósito: Este programa es un conjunto de ejercicios de estructuras alternativas
-# Autor: Javier Acedo Caballero
-# Fecha: 19/10/2025
+"""
+    Programa: Estructuras_alternativas.py
+    Propósito: Este programa es un conjunto de ejercicios de estructuras alternativas
+    Autor: Javier Acedo Caballero
+    Fecha: 19/10/2025
+"""
 
 
 def comparate_ages():
     age1 = int(input("Introduce la edad de la primera persona: "))
     age2 = int(input("Introduce la edad de la segunda persona: "))
+
+    if age1 <= 0 or age2 <= 0:
+        print("La edad debe ser mayor a 0")
+        return
+
     if age1 > age2:
         print("La primera persona es mayor")
     elif age1 < age2:
@@ -30,6 +37,11 @@ def determine_triangle_type():
 
 def determine_leap_year():
     year = int(input("Introduce un año: "))
+
+    if year <= 0:
+        print("El año debe ser mayor a 0")
+        return
+
     if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
         print(f"El año {year} es bisiesto")
     else:
@@ -37,11 +49,44 @@ def determine_leap_year():
 
 
 def calculate_money_change():
-    pass
+    money = int(input("Introduce la cantidad en euros: "))
+
+    value = 500
+
+    while money > 0:
+        if value > 2:
+            type_ = "billete"
+        else:
+            type_ = "moneda"
+
+        if money >= value:
+            quantity = money // value
+            money = money % value
+            print(f"{quantity} {type_}(s) de {value}€")
+
+        if value == 500:
+            value = 200
+        elif value == 200:
+            value = 100
+        elif value == 100:
+            value = 50
+        elif value == 50:
+            value = 20
+        elif value == 20:
+            value = 10
+        elif value == 10:
+            value = 5
+        elif value == 5:
+            value = 2
+        elif value == 2:
+            value = 1
+        else:
+            break
 
 
 def print_week_day():
     day = int(input("Introduce un número del 1 al 7: "))
+
     if day == 1:
         print("Lunes")
     elif day == 2:
@@ -59,34 +104,56 @@ def print_week_day():
     else:
         print("Número inválido, por favor ingrese un número del 1 al 7")
 
-def greatter_number_at_three():
-    print("Introduce solo numeros enteros")
-    numbers = []
-    for i in range(1, 4):
-        numbers.append(int(input(f"introduce numero {i}: ")))
-    numbers.sort()
-    print(numbers[-1])
+def greater_number_at_three():
+    number1 = int(input("Introduce el primer número: "))
+    number2 = int(input("Introduce el segundo número: "))
+    number3 = int(input("Introduce el tercer número: "))
 
-def greatter_number_at_five():
-    print("Introduce solo numeros enteros")
-    numbers = []
-    for i in range(1, 6):
-        numbers.append(int(input(f"introduce numero {i}: ")))
-    numbers.sort()
-    print(numbers[-1])
+    if number1 >= number2 and number1 >= number3:
+        greater = number1
+    elif number2 >= number1 and number2 >= number3:
+        greater = number2
+    else:
+        greater = number3
+
+    print("El número greater es:", greater)
+
+
+def greater_number_at_five():
+    number1 = int(input("Introduce el primer número: "))
+    number2 = int(input("Introduce el segundo número: "))
+    number3 = int(input("Introduce el tercer número: "))
+    number4 = int(input("Introduce el cuarto número: "))
+    number5 = int(input("Introduce el quinto número: "))
+
+    greater = number1
+
+    if number2 > greater:
+        greater = number2
+    if number3 > greater:
+        greater = number3
+    if number4 > greater:
+        greater = number4
+    if number5 > greater:
+        greater = number5
+
+    print("El número mayor es:", greater)
+
 
 def print_mark():
     mark = float(input("Introduce nota: "))
+
     print("Tu calificación es ",end="")
+
     if mark < 0 or mark > 10:
-        print("La nota debe ser mayor a 0 y menor a 10")
+        print("...\nLa nota debe estar entre 0 y 10")
     elif mark < 5:
         print("SUSPENSO")
-    elif mark>= 5 and mark < 7:
+    elif mark < 7:
         print("APROBADO")
-    elif mark>= 7 and mark < 9:
+    elif mark < 9:
         print("NOTABLE")
-    elif mark>= 9 and mark < 10:
+    elif mark < 10:
         print("SOBRESALIENTE")
     else:
         print("MATRICULA DE HONOR")
@@ -103,7 +170,7 @@ def menu():
         print("5. Imprimir dia de la semana")
         print("6. Numero mas grande de tres")
         print("7. Numero mas grande de cinco")
-        print("8. Imprimir la calificacion de la nota")
+        print("8. Imprimir la calificación de la nota")
         print("0. Salir")
 
         choice = input("Ingrese su elección: ")
@@ -120,9 +187,9 @@ def menu():
         elif choice == '5':
             print_week_day()
         elif choice == '6':
-            greatter_number_at_three()
+            greater_number_at_three()
         elif choice == '7':
-            greatter_number_at_five()
+            greater_number_at_five()
         elif choice == '8':
             print_mark()
         elif choice == '0':
@@ -131,4 +198,6 @@ def menu():
         else:
             print("Opción no válida, por favor intente de nuevo.")
 
-menu()
+
+if __name__ == "__main__":
+    menu()
