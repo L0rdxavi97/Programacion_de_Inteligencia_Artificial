@@ -7,8 +7,12 @@
 
 
 def comparate_ages():
-    age1 = int(input("Introduce la edad de la primera persona: "))
-    age2 = int(input("Introduce la edad de la segunda persona: "))
+    try:
+        age1 = int(input("Introduce la edad de la primera persona: "))
+        age2 = int(input("Introduce la edad de la segunda persona: "))
+    except ValueError:
+        print("El valor de edad es invalido")
+        return
 
     if age1 <= 0 or age2 <= 0:
         print("La edad debe ser mayor a 0")
@@ -23,9 +27,14 @@ def comparate_ages():
 
 
 def determine_triangle_type():
-    a = int(input("Introduce longitud de primer lado del triángulo: "))
-    b = int(input("Introduce longitud de segundo lado del triángulo: "))
-    c = int(input("Introduce longitud de tercer lado del triángulo: "))
+    try:
+        a = int(input("Introduce longitud de primer lado del triángulo: "))
+        b = int(input("Introduce longitud de segundo lado del triángulo: "))
+        c = int(input("Introduce longitud de tercer lado del triángulo: "))
+
+    except ValueError:
+        print("El valor del lado del triángulo es invalido")
+        return
 
     if a == b == c:
         print("El triángulo es equilátero")
@@ -36,7 +45,12 @@ def determine_triangle_type():
 
 
 def determine_leap_year():
-    year = int(input("Introduce un año: "))
+    try:
+        year = int(input("Introduce un año: "))
+
+    except ValueError:
+        print("El valor del año es invalido")
+        return
 
     if year <= 0:
         print("El año debe ser mayor a 0")
@@ -49,7 +63,12 @@ def determine_leap_year():
 
 
 def calculate_money_change():
-    money = int(input("Introduce la cantidad en euros: "))
+    try:
+        money = int(input("Introduce la cantidad en euros: "))
+
+    except ValueError:
+        print("La cantidad de euros es invalido")
+        return
 
     value = 500
 
@@ -85,7 +104,12 @@ def calculate_money_change():
 
 
 def print_week_day():
-    day = int(input("Introduce un número del 1 al 7: "))
+    try:
+        day = int(input("Introduce un número del 1 al 7: "))
+
+    except ValueError:
+        print("El valor es invalido")
+        return
 
     if day == 1:
         print("Lunes")
@@ -105,9 +129,14 @@ def print_week_day():
         print("Número inválido, por favor ingrese un número del 1 al 7")
 
 def greater_number_at_three():
-    number1 = int(input("Introduce el primer número: "))
-    number2 = int(input("Introduce el segundo número: "))
-    number3 = int(input("Introduce el tercer número: "))
+    try:
+        number1 = int(input("Introduce el primer número: "))
+        number2 = int(input("Introduce el segundo número: "))
+        number3 = int(input("Introduce el tercer número: "))
+
+    except ValueError:
+        print("El número es invalido")
+        return
 
     if number1 >= number2 and number1 >= number3:
         greater = number1
@@ -120,11 +149,16 @@ def greater_number_at_three():
 
 
 def greater_number_at_five():
-    number1 = int(input("Introduce el primer número: "))
-    number2 = int(input("Introduce el segundo número: "))
-    number3 = int(input("Introduce el tercer número: "))
-    number4 = int(input("Introduce el cuarto número: "))
-    number5 = int(input("Introduce el quinto número: "))
+    try:
+        number1 = int(input("Introduce el primer número: "))
+        number2 = int(input("Introduce el segundo número: "))
+        number3 = int(input("Introduce el tercer número: "))
+        number4 = int(input("Introduce el cuarto número: "))
+        number5 = int(input("Introduce el quinto número: "))
+
+    except ValueError:
+        print("El número es invalido")
+        return
 
     greater = number1
 
@@ -141,7 +175,12 @@ def greater_number_at_five():
 
 
 def print_mark():
-    mark = float(input("Introduce nota: "))
+    try:
+        mark = float(input("Introduce nota: "))
+
+    except ValueError:
+        print("El nota es invalida")
+        return
 
     print("Tu calificación es ",end="")
 
@@ -173,7 +212,13 @@ def menu():
         print("8. Imprimir la calificación de la nota")
         print("0. Salir")
 
-        choice = input("Ingrese su elección: ")
+        try:
+            choice = input("Ingrese su elección: ")
+
+        except ValueError:
+            print("La opción es invalida")
+            return
+
         print('\n')
 
         if choice == '1':
