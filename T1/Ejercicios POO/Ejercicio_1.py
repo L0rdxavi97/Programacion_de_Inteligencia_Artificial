@@ -5,13 +5,17 @@
     Fecha: 04/11/2025
 """
 
+
 class Duration:
     def __init__(self, hour=0, minute=0, second=0):
-        if hour<0 or minute<0 or second<0:
-            raise ValueError("valor no valido")
+        self.__hour, self.__minute, self.__second = hour, minute, second
+        self.__normalize()
 
-        total_seconds = hour * 3600 + minute * 60 + second
+    def __normalize(self):
+        # Calculamos el total de segundos que son
+        total_seconds = self.total_seconds()
 
+        # Normalizamos la duración introducida y la guardamos
         self.__hour = total_seconds // 3600
         remaining = total_seconds % 3600
         self.__minute = remaining // 60
@@ -30,51 +34,41 @@ class Duration:
         return self.__second
 
     def total_seconds(self):
-        return self.hour * 3600 + self.minute * 60 + self.second
+        return self.__hour * 3600 + self.__minute * 60 + self.__second
 
     def __str__(self):
-        return f"{self.hour}h {self.minute}m {self.second}s"
+        return f"{self.__hour}h {self.__minute}m {self.__second}s"
 
     def __eq__(self, other):
         return self.total_seconds() == other.total_seconds()
 
+    def __ne__(self, other):
+        return not self == other
+
     def __gt__(self, other):
         return self.total_seconds() > other.total_seconds()
-
-    def __lt__(self, other):
-        return self.total_seconds() < other.total_seconds()
 
     def __ge__(self, other):
         return self.total_seconds() >= other.total_seconds()
 
+    def __lt__(self, other):
+        return not self >= other
+
     def __le__(self, other):
-        return self.total_seconds() <= other.total_seconds()
+        return not self > other
 
     def __add__(self, other):
         if isinstance(other, Duration):
-            new_seconds = self.total_seconds() + other.total_seconds()
+            return Duration(self.__hour + other.__hour, self.__minute + other.__minute, self.__second + other.__second)
         else:
-            new_seconds = self.total_seconds() + other
-        return new_duration(new_seconds)
+            return Duration(self.__hour, self.__minute, self.__second + other)
 
     def __sub__(self, other):
         if isinstance(other, Duration):
-            new_seconds = self.total_seconds() - other.total_seconds()
+            return Duration(self.__hour - other.__hour, self.__minute - other.__minute, self.__second - other.__second)
         else:
-            new_seconds = self.total_seconds() - other
+            return Duration(self.__hour, self.__minute, self.__second - other)
 
-        if new_seconds < 0:
-            return 'No puede haber duraciones negativas'
-        return new_duration(new_seconds)
-
-
-def new_duration(seconds):
-    new_hour = seconds // 3600
-    remaining = seconds % 3600
-    new_minute = remaining // 60
-    new_second = remaining % 60
-
-    return Duration(new_hour, new_minute, new_second)
 
 def main():
     print("=== DEMOSTRACIÓN DE LA CLASE Duration ===\n")
@@ -109,7 +103,6 @@ def main():
     result = d2 - d3
 
     print(f"{d2} - {d3} = {result}")
-
 
 
 if __name__ == '__main__':
