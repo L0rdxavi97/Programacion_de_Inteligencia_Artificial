@@ -15,6 +15,15 @@ class Fraction:
         if denominator < 0:
             numerator, denominator = -numerator, -denominator
 
+        self.__numerator = numerator
+        self.__denominator = denominator
+
+        self.__normalize()
+
+    def __normalize(self):
+        numerator = self.__numerator
+        denominator = self.__denominator
+
         if isinstance(numerator, float):
             s = str(numerator)
             if '.' in s:
@@ -22,6 +31,7 @@ class Fraction:
                 factor = 10 ** decimals
                 numerator = int(round(numerator * factor))
                 denominator = factor
+
         if isinstance(denominator, float):
             s = str(denominator)
             if '.' in s:
