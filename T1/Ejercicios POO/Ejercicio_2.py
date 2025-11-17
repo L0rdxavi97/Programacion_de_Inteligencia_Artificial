@@ -11,7 +11,7 @@ from math import gcd
 class Fraction:
     def __init__(self, numerator, denominator=1):
         if denominator == 0:
-            raise ValueError("El denominador no puede ser cero.")
+            raise ZeroDivisionError("El denominador no puede ser cero.")
         if denominator < 0:
             numerator, denominator = -numerator, -denominator
 
