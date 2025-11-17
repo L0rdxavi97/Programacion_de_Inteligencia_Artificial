@@ -24,20 +24,23 @@ class Fraction:
         numerator = self.__numerator
         denominator = self.__denominator
 
-        if isinstance(numerator, float):
+        if isinstance(numerator, float): # Averiguamos si el numerador es un float y los pasamos a fracción
             s = str(numerator)
-            if '.' in s:
-                decimals = len(s.split('.')[1])
-                factor = 10 ** decimals
-                numerator = int(round(numerator * factor))
-                denominator = factor
+            # Lo que hacemos es coger la longitud de la parte decimal del numerador,
+            # lo multiplicamos por 10
+            # y ese resultado lo multiplicamos con el numerador original para formar el nuevo numerador
+            # el nuevo denominador es el valor por el que multiplicamos el numerador original
+            decimals = len(s.split('.')[1])
+            factor = 10 ** decimals
+            numerator = int(round(numerator * factor))
+            denominator = factor
 
-        if isinstance(denominator, float):
+        if isinstance(denominator, float): # Averiguamos si el denominador es un float y los pasamos a fracción
             s = str(denominator)
-            if '.' in s:
-                decimals = len(s.split('.')[1])
-                factor = 10 ** decimals
-                denominator = int(round(denominator * factor))
+            # Lo hacemos igual que el numerador, lo diferente es que no sobreescribimos el numerador
+            decimals = len(s.split('.')[1])
+            factor = 10 ** decimals
+            denominator = int(round(denominator * factor))
 
         common = gcd(numerator, denominator)
         self.__numerator = numerator // common
